@@ -30,7 +30,6 @@ job_sequence = [None] * max_deadline
 # for counting jobs added to sequence
 count = 0 
 
-
 for job in jobs:
     if count >= max_deadline:
         break
