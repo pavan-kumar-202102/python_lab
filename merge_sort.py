@@ -4,7 +4,6 @@ def mergesort(arr):
         m=len(arr)//2
         L=arr[:m]
         R=arr[m:]
-        print(L,R,len(arr))
         L= mergesort(L)
         R = mergesort(R)
 
