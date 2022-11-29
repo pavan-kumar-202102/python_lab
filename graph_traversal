@@ -1,0 +1,57 @@
+class Node:
+    def _init_(self, val):
+        self.val = val
+        self.edges = []
+class Graph:
+    def _init_(self, nodes=[]):
+        self.nodes = nodes
+    def add_node(self, val):
+        newNode = Node(val)
+        self.nodes.append(newNode)
+    def add_edge(self, node1, node2):
+        node1.edges.append(node2)
+        node2.edges.append(node1)
+    def bfs(self):
+        if self.nodes is None:
+            return []
+        visited, toVisit = [], [self.nodes[0]]
+        print("\nBFS : ")
+        while toVisit:
+            node = toVisit.pop()
+            visited.append(node)
+            print(node.val,end=" ")
+            for nd in node.edges:
+                if nd not in visited and nd not in toVisit:
+                    toVisit.insert(0, nd)
+        return visited
+    def dfs(self):
+        if self.nodes is None:
+            return []
+        visited, toVisit = [], [self.nodes[0]]
+        print("DFS : ")
+        while toVisit:
+            node = toVisit.pop()
+            visited.append(node)
+            print(node.val,end=" ")
+            for nd in node.edges:
+                if nd not in visited and nd not in toVisit:
+                    toVisit.append(nd)
+        return visited
+graph = Graph()
+graph.add_node(5)
+graph.add_node(3)
+graph.add_node(8)
+graph.add_node(1)
+graph.add_node(9)
+graph.add_node(2)
+graph.add_node(10)
+graph.add_edge(graph.nodes[0], graph.nodes[1])
+graph.add_edge(graph.nodes[0], graph.nodes[3])
+graph.add_edge(graph.nodes[1], graph.nodes[2])
+graph.add_edge(graph.nodes[0], graph.nodes[1])
+graph.add_edge(graph.nodes[2], graph.nodes[3])
+graph.add_edge(graph.nodes[2], graph.nodes[5])
+graph.add_edge(graph.nodes[2], graph.nodes[4])
+graph.add_edge(graph.nodes[4], graph.nodes[6])
+graph.dfs()
+graph.bfs()
